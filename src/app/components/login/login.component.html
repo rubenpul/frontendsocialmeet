@@ -1,0 +1,41 @@
+<app-temperatura></app-temperatura>
+<div class="wrapper fadeInDown">
+<div class ="col-md-12 mt-3">
+
+    <h1>{{page_title}}</h1>
+
+    
+    
+    <div class = "alert alert-danger col-md-5 mt-3" *ngIf = "status == 'errorusuario'">
+        No estas registrado, <a [routerLink]="['/registro']">Registrate aqu&iacute;</a>
+    </div>
+
+    <div class = "alert alert-danger col-md-5 mt-3" *ngIf = "status == 'errorpassword'">
+        Password inv&aacute;lido, intenta de nuevo
+    </div>
+
+    <form class = "col-md-5 ml-0 pl-0" #loginForm="ngForm" (ngSubmit)= "onSubmit(loginForm)">
+        
+        <div class="form-group">
+        
+            <input type="text" name = "id" class="form-control fadeIn first" #id="ngModel" [(ngModel)] = "user.id" pattern="[0-9]+" maxlength = "9" required placeholder="DNI">
+            <small *ngIf = "!id.valid && id.touched" class = "invalid-feedback d-block">
+                El DNI no es v&aacute;lido. Solo n&uacute;meros
+            </small>
+            
+        </div>  
+                
+        <div class="form-group">
+           
+            <input type="password" name = "password" class="form-control fadeIn first" #password="ngModel" [(ngModel)] = "user.password" maxlength = "20" required placeholder="Contraseña">
+            <small *ngIf = "!password.valid && password.touched" class = "invalid-feedback d-block">
+                El Password no es v&aacute;lido
+            </small>
+        </div> 
+
+        <input type="submit" value="Identificate" class="fadeIn fourth" [disabled] = "loginForm.invalid">
+
+    </form>    
+
+</div>
+</div>

@@ -1,0 +1,40 @@
+<app-temperatura></app-temperatura>
+
+
+<div class="container">
+
+    <div class="card">
+            
+        <div class="card-body .table-users">
+            <div class="header">{{page_title}}</div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="display: none">ID</th>
+                        <th>BEBIDA</th>
+                        <th>CANTIDAD DISPONIBLE(BOT)</th>
+                        <th>INGRESAR CANTIDAD (BOT)</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr *ngFor="let inv of inventario" class="text-center">
+                        
+                            <td style="display: none">{{inv.id_insumo}}</td>
+                            <td>{{inv.descripcion}}</td>
+                            <td>{{inv.cantidad_disp}}</td>
+                            <td><input type="text" name = "cantidad_ingresar" class="form-control" #apellido="ngModel" [(ngModel)] = "inv.cantidad_ingresar" pattern="[0-9]+" maxlength = "3" required></td>
+                            <td>
+                                <div >
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(inv)">
+                                        <input type="submit" value="Actualizar" class="btn btn-success" >
+                                    </form>    
+                                </div>
+                            </td>
+                          
+                    </tr>    
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,82 @@
+<app-temperatura></app-temperatura>
+
+
+<div class="container">
+    <div class="card">
+        
+        <div class="card-body .table-users">
+            <div class="header">{{page_title}}</div>
+            <table class="table table-hover">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">MEET</th>
+                    <th scope="col">Vos Asististes?</th>
+                     <th scope="col"></th>
+                   </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let asist of asistencia">
+                        <td scope="row">{{asist.meet}}</td>
+                        <td scope="row">
+                            
+                            <div class="pretty p-icon p-rotate">
+                                <input type="checkbox" (change)="setRadio($event.srcElement,asist)"/>
+                                <div class="state p-success">
+                                    <i class="icon mdi mdi-check"></i>
+                                    <label>Si</label>
+                                </div>
+                            </div>
+                           
+                        </td>
+                        <td>
+                            <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(asist)">
+                                <input type="submit" value="Ver Detalles" class="btn btn-success" >
+                            </form> 
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>    
+</div>
+
+<div class="container" *ngIf="experiencia">
+    <div class="header"> Cuentanos tu experiencia en el Meet {{nombremeet}}</div>
+   
+    <form class = "col-md-5 ml-0 pl-0" #expForm="ngForm" (ngSubmit)= "enviarObservaciones(expForm)">
+        <textarea name = "experiencia" class="form-control" #experiencia="ngModel" [(ngModel)] = "txtexperiencia" rows="4" cols="50">
+            
+        </textarea>
+        <input type="submit" value="Enviar" class="btn btn-success">
+    </form>
+</div>
+
+<div class="container" *ngIf="detalle">
+    <div class="card">
+       
+        <div class="card-body .table-users">
+            <div class="header">Detalles de la Meet</div>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Direcci&oacute;n</th>
+                    <th>Fecha Encuentro</th>
+                    <th>Informaci&oacute;n Adicional</th>
+                   </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">{{detallemeet.direccion}}</td>
+                        <td scope="row">{{detallemeet.fechameet}}</td>
+                        <td scope="row">{{detallemeet.detalle}}</td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+      
+</div>
+<div *ngIf="detalle">
+<app-maps></app-maps>  
+</div>
+

@@ -1,0 +1,84 @@
+<app-temperatura></app-temperatura>
+
+<div class = "alert alert-success col-md-5 mt-3" *ngIf = "status == 'success'">
+    El registro se ha completado correctamente, <a [routerLink]="['/listarusuario']">Agregar Asistentes aqu&iacute;</a>
+</div>
+
+<div class = "alert alert-danger col-md-5 mt-3" *ngIf = "status == 'error'">
+    El registro no se ha completado correctamente, intentalo m&aacute;s tarde
+</div>
+
+<div class="card-body .table-users">
+    <div class="header">{{page_title}}</div>
+<table class="table table-hover">
+    <tr>
+     <td> 
+        <div class ="col-md-10   mt-3">
+  
+
+   
+  
+    <form class = "col-md-15 ml-0 pl-0" #meetForm="ngForm" (ngSubmit)= "onSubmit(meetForm)">
+        
+        <div class="form-group">
+           
+            <input type="text" name = "fechameet" placeholder="Click para seleccionar fecha" class="form-control" bsDatepicker #fechameet="ngModel" [(ngModel)] = "meet.fechameet" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY'}" [minDate]="fechaactual">
+            <small *ngIf = "!fechameet.valid && fechameet.touched" class = "invalid-feedback d-block">
+                La Fecha no es v&aacute;lida 
+            </small>
+        </div>
+        <div class="form-group">
+          
+            <input type="text" name = "motivo" class="form-control" #motivo="ngModel" [(ngModel)] = "meet.motivo"  required placeholder="Motivo">
+            <small *ngIf = "!motivo.valid && motivo.touched" class = "invalid-feedback d-block">
+               Motivo no es v&aacute;lida 
+            </small>
+        </div> 
+        <div class="form-group">
+           
+            <input type="text" name = "direccion" class="form-control" #direccion="ngModel" [(ngModel)] = "meet.direccion"  maxlength = "30" required placeholder="Direcci&oacute;n">
+            <small *ngIf = "!direccion.valid && direccion.touched" class = "invalid-feedback d-block">
+                La Direcci&oacute; no es v&aacute;lido
+            </small>
+        </div> 
+        
+        <div class="form-group">
+            
+            <input type="text" name = "lat" class="form-control" #latitud="ngModel" [(ngModel)] = "meet.latitud"  maxlength = "30" required placeholder="Latitud">
+            <small *ngIf = "!latitud.valid && latitud.touched" class = "invalid-feedback d-block">
+                La Latitud no es v&aacute;lido
+            </small>
+        </div> 
+
+        <div class="form-group">
+             <input type="text" name = "long" class="form-control" #longitud="ngModel" [(ngModel)] = "meet.longitud"  maxlength = "30" required placeholder="Longitud">
+            <small *ngIf = "!longitud.valid && longitud.touched" class = "invalid-feedback d-block">
+                La Longitud no es v&aacute;lido
+            </small>
+        </div> 
+
+        <div class="form-group">
+            
+            <input type="text" name = "detalle" class="form-control" #detalle="ngModel" [(ngModel)] = "meet.detalle"  maxlength = "30" placeholder="Informaci&oacute;n Adicional" >
+            <small *ngIf = "!detalle.valid && detalle.touched" class = "invalid-feedback d-block">
+                La Direcci&oacute; no es v&aacute;lido
+            </small>
+        </div> 
+       
+       
+               
+        <input type="hidden" name = "status" class="form-control" #fechameet="ngModel" [(ngModel)] = "meet.status" maxlength = "20" required>
+            
+
+        <input type="submit" value="Registrar Meet" class="btn btn-success" [disabled] = "meetForm.invalid">
+
+    </form>    
+    
+</div>
+</td>
+<td>
+    <app-maps></app-maps>
+</td> 
+</tr> 
+</table>
+</div>

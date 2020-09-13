@@ -1,0 +1,42 @@
+<app-temperatura></app-temperatura>
+<div class="container">
+    <div class="card">
+       
+        <div class="card-body .table-users">
+
+            <div class = "alert alert-success col-md-5 mt-3" *ngIf = "status == 'success'">
+                {{message}}
+            </div>  
+        
+            <div class = "alert alert-danger col-md-5 mt-3" *ngIf = "status == 'error'">
+                {{message}}
+            </div>
+            <div class="header">Invita Amigos a la Meet {{descripcionmeet}}</div>
+            <table class="table table-hover ">
+                <thead>
+                    <tr class="text-center">
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>EMAIL</th>
+                        <th>ACCION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr *ngFor="let user of users" class="text-center">
+                        <td>{{user.id}}</td>
+                        <td>{{user.nombre}}</td>
+                        <td>{{user.apellido}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(user)">
+                                <button  class="btn btn-success">Invitar</button>
+                            </form>  
+                              
+                        </td>
+                    </tr>    
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</div>

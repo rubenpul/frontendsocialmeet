@@ -1,0 +1,59 @@
+<app-temperatura></app-temperatura>
+<div class="container">
+    <div class="card">
+        
+        <div class="card-body .table-users">
+            <div class="header">{{page_title}}</div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>MEET</th>
+                        <th>CANTIDAD INVITADOS</th>
+                        <th>ESTIMACION CANTIDAD BIRRAS (Bot)</th>
+                        <th>TOTAL BIRRAS (Bot)</th>
+                        <th>DISPONIBLE BIRRAS (Bot)</th>
+                        <th>ASIGNAR BOTELLAS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr  class="text-center">
+                        
+                            
+                            <td>{{descripcionmeet}}</td>
+                            <td>{{cantidadusers}}</td>
+                            <td>{{estimacionbotella}} c/u</td>
+                            <td>{{cantidadtotalbotella}}</td>
+                            <td>{{totaldisponible}}</td>
+                            
+                            <td>
+
+                                <div *ngIf="!fuerainventario">
+                                    <div *ngIf="statusmeet === 'PENDIENTE'">
+                                        <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit('RESERVADO')">
+                                            <input type="submit" value="RESERVAR BEBIDAS" class="btn btn-success" >
+                                        </form>    
+                                    </div>
+                                    <div *ngIf="statusmeet === 'RESERVADO'">
+                                        <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit('FINALIZADO')">
+                                            <input type="submit" value="RESERVADO" class="btn btn-success" >
+                                        </form>    
+                                    </div>
+                                    <div *ngIf="statusmeet === 'FINALIZADO'">
+                                        <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit('FINALIZADO')">
+                                            <input type="submit" value="CERRADO" class="btn btn-success" >
+                                        </form>    
+                                    </div>
+                                </div>    
+                                <div *ngIf="fuerainventario">
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit('RECARGAR')">
+                                        <input type="submit" value="ACTUALIZAR INVENTARIO" class="btn btn-danger" >
+                                    </form>    
+                                </div>
+                            </td>
+                          
+                    </tr>    
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,76 @@
+<app-temperatura></app-temperatura>
+<div class="container ">
+    <div class = "alert alert-success col-md-5 mt-3" *ngIf = "status == 'success'">
+        {{mensaje}}
+    </div>
+
+    <div class = "alert alert-danger col-md-5 mt-3" *ngIf = "status == 'error'">
+        {{mensaje}}
+    </div>
+    <div class="card">
+        
+        <div class="card-body .table-users">
+            <div class="header">{{page_title}}</div>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th style="display: none">id</th>
+                        <th>MOTIVO</th>
+                        <th>DIRECCI&Oacute;N</th>
+                        <th>INFORMACI&Oacute;N ADICIONAL</th>
+                        <th>FECHA MEET</th>
+                        <th>ESTATUS</th>
+                        <th>DETALLES</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr *ngFor="let meet of statusmeets" class="text-center">
+                        
+                            <td style="display: none">{{meet.id}}</td>
+                            <td>{{meet.motivo}}</td>
+                            <td>{{meet.direccion}}</td>
+                            <td>{{meet.detalle}}</td>
+                            <td>{{meet.fechameet}}</td>
+                            <td>{{meet.status}}</td>
+                            <td>
+                                <div >
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "dondeEs(meet)">
+                                        <button class="btn btn-success" >Donde es?</button>
+                                    </form>    
+                                </div>
+                             </td>
+                             <td>   
+                                <div *ngIf="!consumo && !inscribir">
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(meet,consumo,false,false)">
+                                        <button class="btn btn-success" >Invitar</button>
+                                    </form>    
+                                </div>
+                                <div *ngIf="consumo && !inscribir">
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(meet,consumo,false,false)">
+                                        <button class="btn btn-success" >Estimaci&oacute;n Insumos</button> 
+                                    </form>    
+                                </div>
+                                <div *ngIf="!inscribir">
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(meet,consumo,false,true)">
+                                        <button class="btn btn-success" >Actualizar</button>
+                                    </form>    
+                                </div>
+                                
+                                <div *ngIf="inscribir">
+                                    <form class = "col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)= "onSubmit(meet,consumo,true,false)">
+                                        <button class="btn btn-success" >Inscribirme</button>
+                                    </form>    
+                                </div>
+                            </td>
+                          
+                    </tr>    
+                </tbody>
+            </table>
+        </div>
+    </div>    
+</div>
+
+<div *ngIf="dondeMeet">
+    <app-maps></app-maps>
+</div>    
