@@ -34,7 +34,7 @@ import { AsignacionbebidaComponent } from './components/asignacionbebida/asignac
     ErrorComponent,
     MeetComponent,
     StatusmeetComponent,
-    ListarusuarioComponent,
+    ListarusuarioComponent, 
     ConsumomeetComponent,
     TemperaturaComponent,
     InventarioComponent,
